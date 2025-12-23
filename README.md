@@ -3,6 +3,7 @@
 Un générateur de badges SVG élégant et personnalisable pour vos profils GitHub. Créez des badges visuels avec vos statistiques GitHub et intégrez-les facilement dans vos README.md.
 
 ![Badge Example](https://projets.agence-prestige-numerique.fr/github_stats/api/generate.php?username=Axxel-L)
+<br>
 *Exemple de badge généré pour l'utilisateur GitHub "Axxel-L"*
 
 ## ✨ Fonctionnalités
