@@ -212,12 +212,65 @@ $location = !empty($userData['location']) ? htmlspecialchars($userData['location
 $createdAt = date('M Y', strtotime($userData['created_at']));
 
 // ============================================================================
+// CALCUL DYNAMIQUE DE LA POSITION Y
+// ============================================================================
+
+// Calculer le nombre de lignes d'informations
+$infoLines = 0;
+if ($company) $infoLines++;
+if ($location) $infoLines++;
+$infoLines++; // Pour la date d'inscription
+
+// Position Y de base pour les informations
+$infoY = 110;
+
+// Position Y pour les langages : ajuster dynamiquement en fonction du nombre de lignes
+$langY = $infoY + ($infoLines * 18) + 10; // 18px par ligne d'info + 10px d'espace
+
+// Position Y pour les cartes de statistiques : ajuster dynamiquement
+$cardY = $langY + 50; // 50px après les langages
+
+// ============================================================================
+// GÉNÉRATION DES INFORMATIONS UTILISATEUR
+// ============================================================================
+
+$infoHTML = '';
+$currentInfoY = $infoY;
+
+// Ajouter un espacement initial
+$infoHTML .= '
+<g transform="translate(50, ' . $currentInfoY . ')">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="12" fill="transparent"> </text>
+</g>';
+$currentInfoY += 5;
+
+if ($company) {
+    $infoHTML .= '
+    <g transform="translate(50, ' . $currentInfoY . ')">
+        <text x="0" y="0" font-family="Arial, sans-serif" font-size="12" fill="#9CA3AF">🏢 ' . $company . '</text>
+    </g>';
+    $currentInfoY += 18;
+}
+
+if ($location) {
+    $infoHTML .= '
+    <g transform="translate(50, ' . $currentInfoY . ')">
+        <text x="0" y="0" font-family="Arial, sans-serif" font-size="12" fill="#9CA3AF">📍 ' . $location . '</text>
+    </g>';
+    $currentInfoY += 18;
+}
+
+$infoHTML .= '
+<g transform="translate(50, ' . $currentInfoY . ')">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="12" fill="#9CA3AF">📅 Inscrit en ' . $createdAt . '</text>
+</g>';
+
+// ============================================================================
 // GÉNÉRATION DU SVG
 // ============================================================================
 
 // Générer les éléments SVG pour les langages
 $langHTML = '';
-$langY = 160;
 $index = 0;
 
 foreach ($topLanguages as $lang => $count) {
@@ -247,13 +300,21 @@ $statsData = [
 ];
 
 $cardX = 50;
-$cardY = 200;
 $cardWidth = 100;
 $cardHeight = 60;
+$cardSpacing = 15;
+
+// Calculer le nombre de lignes de cartes
+$cardsPerRow = 3;
+$totalCards = count($statsData);
+$cardRows = ceil($totalCards / $cardsPerRow);
 
 foreach ($statsData as $index => $stat) {
-    $x = $cardX + (($index % 3) * ($cardWidth + 20));
-    $y = $cardY + (floor($index / 3) * ($cardHeight + 15));
+    $row = floor($index / $cardsPerRow);
+    $col = $index % $cardsPerRow;
+    
+    $x = $cardX + ($col * ($cardWidth + 20));
+    $y = $cardY + ($row * ($cardHeight + $cardSpacing));
     $formattedValue = formatNumber($stat['value']);
 
     $statsCards .= '
@@ -264,46 +325,25 @@ foreach ($statsData as $index => $stat) {
     </g>';
 }
 
-// Générer les informations supplémentaires (entreprise, localisation, date d'inscription)
-$infoHTML = '';
-$infoY = 130;
+// ============================================================================
+// CALCUL DE LA HAUTEUR TOTALE DU SVG
+// ============================================================================
 
-// Espacement
-$infoHTML .= '
-<g transform="translate(50, ' . $infoY . ')">
-    <text x="0" y="0" font-family="Arial, sans-serif" font-size="12" fill="transparent"> </text>
-</g>';
-$infoY += 5;
+// Calculer la hauteur totale nécessaire
+$cardsTotalHeight = $cardRows * $cardHeight + ($cardRows - 1) * $cardSpacing;
+$totalHeight = $cardY + $cardsTotalHeight + 40; // 40px de marge en bas
 
-if ($company) {
-    $infoHTML .= '
-    <g transform="translate(50, ' . $infoY . ')">
-        <text x="0" y="0" font-family="Arial, sans-serif" font-size="12" fill="#9CA3AF">🏢 ' . $company . '</text>
-    </g>';
-    $infoY += 20;
-}
-
-if ($location) {
-    $infoHTML .= '
-    <g transform="translate(50, ' . $infoY . ')">
-        <text x="0" y="0" font-family="Arial, sans-serif" font-size="12" fill="#9CA3AF">📍 ' . $location . '</text>
-    </g>';
-    $infoY += 20;
-}
-
-$infoHTML .= '
-<g transform="translate(50, ' . $infoY . ')">
-    <text x="0" y="0" font-family="Arial, sans-serif" font-size="12" fill="#9CA3AF">📅 Inscrit en ' . $createdAt . '</text>
-</g>';
+// Ajuster la hauteur du SVG
+$svgHeight = max(400, $totalHeight); // Minimum 400px, sinon calculé dynamiquement
 
 // ============================================================================
 // CONSTRUCTION FINALE DU SVG
 // ============================================================================
 
 $svg = '<?xml version="1.0" encoding="UTF-8"?>
-<svg width="600" height="350" xmlns="http://www.w3.org/2000/svg">
+<svg width="600" height="' . $svgHeight . '" xmlns="http://www.w3.org/2000/svg">
     <!-- Fond du badge -->
-    <rect width="600" height="350" fill="#292929" rx="12"/>
+    <rect width="600" height="' . $svgHeight . '" fill="#292929" rx="12"/>
     
     <!-- Avatar de l\'utilisateur (encodé en Base64) -->
     <g transform="translate(30, 30)">
