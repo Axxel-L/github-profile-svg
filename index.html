@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Profile SVG Generator | Agence Prestige Numérique</title>
+
+    <!-- Métadonnées SEO -->
+    <meta name="description"
+        content="GitHub Profile SVG Generator - Créez un badge personnalisé pour votre profil GitHub avec un design élégant. Outil développé par Agence Prestige Numérique.">
+    <meta name="keywords"
+        content="GitHub, SVG, badge, profil, statistiques, Agence Prestige Numérique, développement web, Axel Lalaut">
+    <meta name="author" content="Agence Prestige Numérique">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://projets.agence-prestige-numerique.fr/">
+    <meta property="og:title" content="GitHub Profile SVG Generator | Agence Prestige Numérique">
+    <meta property="og:description"
+        content="Créez un badge personnalisé pour votre profil GitHub avec un design élégant et moderne">
+    <meta property="og:image" content="https://agence-prestige-numerique.fr/img/logo_1.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://projets.agence-prestige-numerique.fr/">
+    <meta property="twitter:title" content="GitHub Profile SVG Generator | Agence Prestige Numérique">
+    <meta property="twitter:description"
+        content="Créez un badge personnalisé pour votre profil GitHub avec un design élégant et moderne">
+    <meta property="twitter:image" content="https://agence-prestige-numerique.fr/img/logo_1.png">
+
+    <link rel="canonical" href="https://projets.agence-prestige-numerique.fr/">
+
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "GitHub Profile SVG Generator",
+        "description": "Outil de génération de badges SVG pour profils GitHub",
+        "url": "https://projets.agence-prestige-numerique.fr",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "author": {
+            "@type": "Organization",
+            "name": "Agence Prestige Numérique",
+            "url": "https://agence-prestige-numerique.fr"
+        }
+    }
+    </script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['SF Pro Display', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#1A1A1A',
+                        light: '#F5F5F7',
+                        glass: 'rgba(255, 255, 255, 0.08)',
+                        'glass-border': 'rgba(255, 255, 255, 0.18)',
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'pulse-soft': 'pulseSoft 2s infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        pulseSoft: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.7' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    },
+                    backdropBlur: {
+                        xs: '2px',
+                        sm: '4px',
+                        md: '8px',
+                        lg: '12px',
+                        xl: '16px',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Fonts et icônes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://agence-prestige-numerique.fr/img/logo_1.png">
+
+    <!-- CSS personnalisé -->
+    <style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-button {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-button:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .glass-input {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #f5f5f7, #aaaaaa, #f5f5f7);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .tab-active {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        #svg-container svg {
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+            border-radius: 12px;
+        }
+
+        .counter-number {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+
+<body class="bg-dark text-light font-sans">
+    <div class="circle w-96 h-96 bg-gray-800 top-10 -left-40"></div>
+    <div class="circle w-80 h-80 bg-gray-700 top-1/2 -right-20"></div>
+    <div class="circle w-64 h-64 bg-gray-600 bottom-20 left-1/3"></div>
+    <div class="circle w-72 h-72 bg-gray-500 top-1/4 left-1/2"></div>
+    <main class="pt-16 pb-16 px-6">
+        <!-- Section Hero -->
+        <section id="accueil" class="max-w-7xl mx-auto mb-16 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 animate-fade-in text-white">
+                GitHub <span class="gradient-text">Profile</span> SVG Generator
+            </h1>
+            <p class="text-xl mb-8 animate-fade-in opacity-90 max-w-2xl mx-auto">
+                Créez un badge personnalisé pour votre README.md avec un design élégant et moderne
+            </p>
+        </section>
+        <!-- Section Configuration -->
+        <section id="configuration" class="max-w-4xl mx-auto mb-16">
+            <div class="glass-effect p-8 rounded-3xl card-hover">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold mb-2 flex items-center">
+                        <i class="fas fa-user-circle text-gray-300 mr-3"></i>
+                        <span>Configuration du badge</span>
+                    </h2>
+                    <p class="text-gray-400">Entrez votre nom d'utilisateur GitHub pour générer votre badge personnalisé
+                    </p>
+                </div>
+
+                <div class="mb-8">
+                    <label for="username" class="block text-gray-300 mb-3 text-lg font-medium">
+                        <i class="fas fa-at text-gray-300 mr-2"></i>
+                        Nom d'utilisateur GitHub
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="username" placeholder="ex: octocat" autocomplete="off"
+                            class="glass-input w-full py-4 px-6 rounded-xl text-white placeholder-gray-500 focus:outline-none text-lg">
+                    </div>
+                </div>
+
+                <button id="generate"
+                    class="glass-button w-full py-4 rounded-xl text-white font-semibold text-lg flex items-center justify-center transition-all duration-300 hover:bg-white/12">
+                    <span class="btn-text flex items-center">
+                        <i class="fas fa-magic mr-3"></i>
+                        Générer le badge SVG
+                    </span>
+                    <span class="btn-loader hidden items-center">
+                        <i class="fas fa-spinner fa-spin mr-3"></i>
+                        Génération en cours...
+                    </span>
+                </button>
+            </div>
+        </section>
+        <!-- Message d'erreur -->
+        <section id="error-section" class="max-w-4xl mx-auto mb-16">
+            <div id="error"
+                class="hidden glass-effect p-6 mb-8 border-l-4 border-red-500 bg-red-500/10 animate-fade-in">
+                <div class="flex items-center">
+                    <i class="fas fa-exclamation-triangle text-red-400 text-2xl mr-4"></i>
+                    <div>
+                        <h3 class="font-bold text-red-300">Erreur de génération</h3>
+                        <p id="error-message" class="text-gray-300 mt-1"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section Prévisualisation -->
+        <section id="preview-section" class="max-w-6xl mx-auto">
+            <div id="preview" class="hidden animate-slide-up">
+                <div class="glass-effect p-8 rounded-3xl card-hover">
+                    <div class="flex items-center mb-8">
+                        <div class="w-12 h-12 rounded-full bg-gray-700/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-eye text-gray-300 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold">Prévisualisation du badge</h2>
+                    </div>
+                    <!-- SVG Preview -->
+                    <div class="glass-effect rounded-2xl p-8 mb-8 flex justify-center items-center min-h-64">
+                        <div id="svg-container" class="text-center w-full"></div>
+                    </div>
+                    <div class="mb-8">
+                        <div class="flex flex-wrap border-b border-gray-700 mb-6">
+                            <button
+                                class="tab-btn py-3 px-6 text-lg font-medium rounded-t-lg transition-all duration-300 border-b-2 border-transparent hover:bg-white/5 active"
+                                data-tab="markdown">
+                                <i class="fab fa-markdown mr-2"></i> Markdown
+                            </button>
+                            <button
+                                class="tab-btn py-3 px-6 text-lg font-medium rounded-t-lg transition-all duration-300 border-b-2 border-transparent hover:bg-white/5"
+                                data-tab="html">
+                                <i class="fab fa-html5 mr-2"></i> HTML
+                            </button>
+                            <button
+                                class="tab-btn py-3 px-6 text-lg font-medium rounded-t-lg transition-all duration-300 border-b-2 border-transparent hover:bg-white/5"
+                                data-tab="url">
+                                <i class="fas fa-link mr-2"></i> URL directe
+                            </button>
+                        </div>
+                        <div class="tab-content active" id="markdown-tab">
+                            <h3 class="text-xl font-bold mb-4 flex items-center">
+                                <i class="fas fa-code mr-3"></i> Code Markdown pour votre README
+                            </h3>
+                            <div class="glass-effect rounded-xl p-4 relative">
+                                <pre
+                                    class="overflow-x-auto p-4"><code id="markdown-code" class="text-gray-300 text-sm md:text-base"></code></pre>
+                                <button
+                                    class="btn-copy absolute top-4 right-4 glass-button px-4 py-2 rounded-lg hover:bg-white/10 transition-colors"
+                                    data-target="markdown-code">
+                                    <i class="fas fa-copy mr-2"></i> Copier
+                                </button>
+                            </div>
+                        </div>
+                        <div class="tab-content hidden" id="html-tab">
+                            <h3 class="text-xl font-bold mb-4 flex items-center">
+                                <i class="fas fa-code mr-3"></i> Code HTML pour votre site web
+                            </h3>
+                            <div class="glass-effect rounded-xl p-4 relative">
+                                <pre
+                                    class="overflow-x-auto p-4"><code id="html-code" class="text-gray-300 text-sm md:text-base"></code></pre>
+                                <button
+                                    class="btn-copy absolute top-4 right-4 glass-button px-4 py-2 rounded-lg hover:bg-white/10 transition-colors"
+                                    data-target="html-code">
+                                    <i class="fas fa-copy mr-2"></i> Copier
+                                </button>
+                            </div>
+                        </div>
+                        <div class="tab-content hidden" id="url-tab">
+                            <h3 class="text-xl font-bold mb-4 flex items-center">
+                                <i class="fas fa-external-link-alt mr-3"></i> URL directe vers l'image SVG
+                            </h3>
+                            <div class="glass-effect rounded-xl p-4 relative">
+                                <pre
+                                    class="overflow-x-auto p-4"><code id="url-code" class="text-gray-300 text-sm md:text-base"></code></pre>
+                                <button
+                                    class="btn-copy absolute top-4 right-4 glass-button px-4 py-2 rounded-lg hover:bg-white/10 transition-colors"
+                                    data-target="url-code">
+                                    <i class="fas fa-copy mr-2"></i> Copier
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Info Box -->
+                    <div class="glass-effect p-6 rounded-xl border border-gray-600/20 bg-gray-600/5">
+                        <div class="flex items-start">
+                            <div class="bg-gray-600/20 p-3 rounded-lg mr-4">
+                                <i class="fas fa-lightbulb text-gray-300 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Astuce</h4>
+                                <p class="text-gray-300">Le badge SVG se met à jour automatiquement avec les dernières
+                                    données de votre profil GitHub.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section Statistiques -->
+        <section id="stats-section" class="max-w-4xl mx-auto mb-16">
+            <div class="glass-effect p-8 rounded-3xl card-hover">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold mb-2 flex items-center">
+                        <i class="fas fa-chart-line text-gray-300 mr-3"></i>
+                        <span>Statistiques en temps réel</span>
+                    </h2>
+                    <p class="text-gray-400">Découvrez l'impact de notre générateur dans la communauté</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                    <div class="glass-effect p-6 rounded-2xl text-center">
+                        <div class="text-3xl font-bold text-white mb-2">
+                            <span id="total-generations" class="counter-number" data-count="0">0</span>
+                        </div>
+                        <p class="text-gray-400">Badges générés</p>
+                        <div class="mt-4 text-sm text-gray-500">
+                            <i class="fas fa-arrow-up text-green-400 mr-1"></i>
+                            <span>+<span id="daily-generations">0</span> aujourd'hui</span>
+                        </div>
+                    </div>
+                    <div class="glass-effect p-6 rounded-2xl text-center">
+                        <div class="text-3xl font-bold text-white mb-2">
+                            <span id="total-visitors" class="counter-number" data-count="0">0</span>
+                        </div>
+                        <p class="text-gray-400">Visiteurs uniques</p>
+                        <div class="mt-4 text-sm text-gray-500">
+                            <i class="fas fa-users text-blue-400 mr-1"></i>
+                            <span>Communauté grandissante</span>
+                        </div>
+                    </div>
+                    <div class="glass-effect p-6 rounded-2xl text-center">
+                        <div class="text-3xl font-bold text-white mb-2">
+                            <span id="monthly-generations" class="counter-number">0</span>
+                        </div>
+                        <p class="text-gray-400">Ce mois-ci</p>
+                        <div class="mt-4 text-sm text-gray-500">
+                            <i class="fas fa-calendar-alt text-purple-400 mr-1"></i>
+                            <span>Générations mensuelles</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-effect p-6 rounded-2xl border border-gray-600/20">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gray-700/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-history text-gray-300"></i>
+                        </div>
+                        <h3 class="text-lg font-bold">Historique récent</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-gray-400 text-sm mb-1">Dernière génération :</p>
+                            <p id="last-generation" class="text-gray-300 font-medium">--</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 text-sm mb-1">Dernière visite :</p>
+                            <p id="last-visit" class="text-gray-300 font-medium">--</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 text-center text-gray-400 text-sm">
+                    <i class="fas fa-sync-alt mr-2"></i>
+                    <span>Les statistiques sont mises à jour en temps réel</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 bg-dark/50 backdrop-blur-sm py-8">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4 text-white flex items-center">
+                        <i class="fas fa-link mr-2"></i> Liens rapides
+                    </h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="https://agence-prestige-numerique.fr" target="_blank"
+                                class="text-gray-400 hover:text-white transition-colors flex items-center">
+                                <i class="fas fa-external-link-alt mr-2 text-sm"></i>
+                                Agence Prestige Numérique
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/Axxel-L/github-profile-svg"
+                                target="_blank"
+                                class="text-gray-400 hover:text-white transition-colors flex items-center">
+                                <i class="fab fa-github mr-2"></i>
+                                Code source GitHub
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/Axxel-L/github-profile-svg/issues"
+                                target="_blank"
+                                class="text-gray-400 hover:text-white transition-colors flex items-center">
+                                <i class="fas fa-bug mr-2"></i>
+                                Signaler un problème
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/Axxel-L/github-profile-svg/blob/main/LICENSE"
+                                target="_blank"
+                                class="text-gray-400 hover:text-white transition-colors flex items-center">
+                                <i class="fas fa-balance-scale mr-2"></i>
+                                Licence MIT
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 text-white flex items-center">
+                        <i class="fas fa-shield-alt mr-2"></i> Confidentialité
+                    </h3>
+                    <div class="text-gray-400 space-y-3">
+                        <p class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mr-2 mt-1 flex-shrink-0"></i>
+                            <span>Ce projet n'utilise que l'API GitHub officielle</span>
+                        </p>
+                        <p class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mr-2 mt-1 flex-shrink-0"></i>
+                            <span>Aucune donnée utilisateur n'est stockée sur nos serveurs</span>
+                        </p>
+                        <p class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mr-2 mt-1 flex-shrink-0"></i>
+                            <span>Le code source est entièrement open source</span>
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 text-white flex items-center">
+                        <i class="fas fa-info-circle mr-2"></i> À propos
+                    </h3>
+                    <div class="text-gray-400 space-y-3">
+                        <p>
+                            <i class="fas fa-code-branch mr-2"></i>
+                            <span class="font-medium">Version :</span>
+                            <span id="version" class="ml-2 font-mono">0.9.3</span>
+                        </p>
+                        <p>
+                            <i class="fas fa-calendar-alt mr-2"></i>
+                            <span class="font-medium">Dernière mise à jour :</span>
+                            <span class="ml-2">Décembre 2025</span>
+                        </p>
+                        <p>
+                            <i class="fas fa-heart mr-2 text-red-400"></i>
+                            <span>Développé avec passion par <a href="https://agence-prestige-numerique.fr"
+                                    target="_blank" class="text-gray-300 hover:text-white">Agence Prestige
+                                    Numérique</a></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <div class="glass-effect p-4 rounded-xl max-w-3xl mx-auto">
+                    <p class="text-gray-400 mb-2">
+                        <i class="fas fa-code mr-2"></i>
+                        Ce projet est open source sous licence MIT
+                    </p>
+                    <p class="text-sm text-gray-500">
+                        Vous êtes libre d'utiliser, modifier et distribuer ce code. Si vous utilisez notre code dans
+                        votre projet,
+                        veuillez inclure une mention de crédit à
+                        <a href="https://agence-prestige-numerique.fr" target="_blank"
+                            class="text-gray-300 hover:text-white font-medium">Agence Prestige Numérique</a>.
+                    </p>
+                </div>
+                <div class="mt-6 text-gray-500 text-sm">
+                    <p>
+                        &copy; 2025 GitHub Profile SVG Generator. Un projet de
+                        <a href="https://agence-prestige-numerique.fr" target="_blank"
+                            class="text-gray-300 hover:text-white">Agence Prestige Numérique</a>.
+                        Tous droits réservés.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="./script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            function activateTab(tabId) {
+                tabBtns.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.classList.remove('tab-active');
+                });
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    content.classList.add('hidden');
+                });
+                const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+                const activeContent = document.getElementById(`${tabId}-tab`);
+                if (activeBtn && activeContent) {
+                    activeBtn.classList.add('active');
+                    activeBtn.classList.add('tab-active');
+                    activeContent.classList.add('active');
+                    activeContent.classList.remove('hidden');
+                }
+            }
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetTab = this.getAttribute('data-tab');
+                    activateTab(targetTab);
+                });
+            });
+            if (tabBtns.length > 0) {
+                const defaultTab = tabBtns[0].getAttribute('data-tab');
+                activateTab(defaultTab);
+            }
+        });
+    </script>
+</body>
+</html>
